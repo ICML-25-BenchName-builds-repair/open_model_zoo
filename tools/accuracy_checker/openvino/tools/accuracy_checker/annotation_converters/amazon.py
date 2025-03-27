@@ -279,8 +279,16 @@ class AmazonProductData(BaseFormatConverter):
         item_info = get_path(self.data_dir / self.item_info, is_directory=False)
         reviews_info = get_path(self.data_dir / self.reviews_info, is_directory=False)
 
-        test_data = DataIterator(str(test_file), str(uid_voc), str(mid_voc), str(cat_voc), str(item_info),
-                                 str(reviews_info), self.batch, self.max_len)
+        test_data = DataIterator(
+            str(test_file),
+            str(uid_voc),
+            str(mid_voc),
+            str(cat_voc),
+            str(item_info),
+            str(reviews_info),
+            self.batch,
+            self.max_len
+        )
         preprocessed_folder = Path(self.preprocessed_dir)
         if not self.skip_dump and not preprocessed_folder.exists():
             preprocessed_folder.mkdir(exist_ok=True, parents=True)
