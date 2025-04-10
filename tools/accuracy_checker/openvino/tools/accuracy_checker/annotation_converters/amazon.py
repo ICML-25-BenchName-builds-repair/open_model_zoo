@@ -39,7 +39,8 @@ class DataIterator:
         self.source_dicts = []
         for source_dict in [uid_voc, mid_voc, cat_voc]:
             with open(source_dict, 'rb') as source_content:
-                self.source_dicts.append(pickle.load(source_content, encoding='UTF-8'))  # nosec B301  # disable pickle check
+                # nosec B301  # disable pickle check
+                self.source_dicts.append(pickle.load(source_content, encoding='UTF-8'))
 
         with open(item_info, "r", encoding='UTF-8') as f_meta:
             meta_map = {}
@@ -180,7 +181,8 @@ class AmazonProductData(BaseFormatConverter):
             "test_data": StringField(optional=True, default='local_test_splitByUser',
                                      description="test data filename."),
             "batch": NumberField(optional=True, default=1, description="Batch size", value_type=int),
-            "max_len": NumberField(optional=True, default=None, description="Maximum sequence length", value_type=int),
+            "max_len": NumberField(optional=True, default=None, 
+                                     description="Maximum sequence length", value_type=int),
             "subsample_size": NumberField(
                 optional=True, default=0, description="Number of sentences to process", value_type=int
             ),
@@ -188,7 +190,8 @@ class AmazonProductData(BaseFormatConverter):
             "mid_voc": StringField(optional=True, default='mid_voc.pkl', description="mid_voc filename"),
             "cat_voc": StringField(optional=True, default='cat_voc.pkl', description="cat_voc filename"),
             "item_info": StringField(optional=True, default='item-info', description="item info filename"),
-            "reviews_info": StringField(optional=True, default='reviews-info', description="reviews info filename"),
+            "reviews_info": StringField(optional=True, default='reviews-info', 
+                                         description="reviews info filename"),
             "mid_his_batch": StringField(optional=True, default="Inputs/mid_his_batch_ph",
                                          description="mid_his_batch input identifier"),
             "cat_his_batch": StringField(optional=True, default="Inputs/cat_his_batch_ph",
